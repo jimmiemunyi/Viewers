@@ -1,20 +1,23 @@
 import validate from 'validate.js';
 
 validate.validators.equals = function (value, options, key, attributes) {
-  if (options && value !== options.value) {
-    return key + 'must equal ' + options.value;
+  const testValue = options?.value ?? options;
+  if (value !== testValue) {
+    return key + 'must equal ' + testValue;
   }
 };
 
 validate.validators.doesNotEqual = function (value, options, key) {
-  if (options && value === options.value) {
-    return key + 'cannot equal ' + options.value;
+  const testValue = options?.value ?? options;
+  if (value === testValue) {
+    return key + 'cannot equal ' + testValue;
   }
 };
 
 validate.validators.contains = function (value, options, key) {
-  if (options && value.indexOf && value.indexOf(options.value) === -1) {
-    return key + 'must contain ' + options.value;
+  const testValue = options?.value ?? options;
+  if (testValue && value.indexOf && value.indexOf(testValue) === -1) {
+    return key + 'must contain ' + testValue;
   }
 };
 
@@ -35,5 +38,16 @@ validate.validators.endsWith = function (value, options, key) {
     return key + 'must end with ' + options.value;
   }
 };
+
+validate.validators.greaterThan = function (value, options, key) {
+  const testValue = options?.value ?? options;
+  if (testValue !== undefined && value <= testValue) {
+
+    return key + 'with value ' + value + ' must be greater than ' + testValue;
+  }
+
+};
+
+validate.validators.notNull = (value) => ((value === null || value === undefined) ? "Value is null" : undefined);
 
 export default validate;
