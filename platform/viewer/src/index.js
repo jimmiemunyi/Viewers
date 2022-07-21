@@ -29,6 +29,7 @@ import OHIFDicomSegmentationExtension from '@ohif/extension-dicom-segmentation';
 import OHIFDicomRtExtension from '@ohif/extension-dicom-rt';
 import OHIFDicomMicroscopyExtension from '@ohif/extension-dicom-microscopy';
 import OHIFDicomPDFExtension from '@ohif/extension-dicom-pdf';
+import OHIFDicomModelPredictionExtension from '../../../extensions/ai-ohif-plugin';
 //import OHIFDicomTagBrowserExtension from '@ohif/extension-dicom-tag-browser';
 // Add this for Debugging purposes:
 //import OHIFDebuggingExtension from '@ohif/extension-debugging';
@@ -53,8 +54,23 @@ const appProps = {
     OHIFDicomPDFExtension,
     OHIFDicomSegmentationExtension,
     OHIFDicomRtExtension,
-    //OHIFDebuggingExtension,
-    //OHIFDicomTagBrowserExtension,
+    // OHIFDicomTagBrowserExtension,
+    [
+      OHIFDicomModelPredictionExtension,
+      {
+        options: {
+          mailTo: 'hello@gmail.com',
+        },
+        modelsDetails: [
+          {
+            id: '1',
+            name: 'T-Scope AutoOB',
+            predictionApi: 'http://127.0.0.1:5000/predict',
+            infoApi: 'http://127.0.0.1:5000/infoapi/t-scope-auto-ob',
+          },
+        ],
+      },
+    ],
   ],
 };
 

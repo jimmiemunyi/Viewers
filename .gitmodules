@@ -1,3 +1,6 @@
 [submodule "testdata"]
 	path = testdata
 	url = https://github.com/OHIF/viewer-testdata-dicomweb.git
+[submodule "extensions/ai-ohif-plugin"]
+	path = extensions/ai-ohif-plugin
+	url = git@github.com:TambuaHealth/ai-ohif-plugin.git
